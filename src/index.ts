@@ -1,31 +1,40 @@
-import express, { Request, Response } from 'express';
-import cors from 'cors';
-
 const dotenv = require('dotenv');
 dotenv.config();
 
-const PORT = process.env.PORT;
+import { Telegraf } from 'telegraf';
+import { message } from 'telegraf/filters';
+import { identifyCharacterByImageUrl } from './services/aiAdapter';
 
-import identifierRouter from '@/Identifier/routes';
+const TELEGRAM_API_KEY =
+  process.env.TELEGRAM_API_KEY || 'Your telegram bot api key';
 
-const app = express();
+const bot = new Telegraf(TELEGRAM_API_KEY);
 
-// You can change the allowed origins
-const allowedOrigins = [`http://localhost:${PORT}`];
-const options: cors.CorsOptions = {
-  origin: allowedOrigins
-};
-app.use(cors(options));
-app.use(express.json());
-
-const port = process.env.PORT;
-
-identifierRouter(app);
-
-app.get('/', (req: Request, res: Response) => {
-  res.send('Express + TypeScript Server');
+bot.start((chat) => {
+  chat.reply(
+    'Buenas!, Puedes mandarme fotos de personajes famosos y tratare de identificarlos!'
+  );
 });
 
-app.listen(port, () => {
-  console.log(`[server]: Server is running at http://localhost:${port}`);
+bot.command('quit', async (ctx) => {
+  // Using context shortcut
+  await ctx.leaveChat();
 });
+
+bot.on(message('photo'), async (ctx) => {
+  console.log(ctx.message.photo);
+  if (ctx.message.photo && ctx.message.photo.length > 0) {
+    const imageId = ctx.message.photo.pop()!.file_id;
+    const imageLink = await ctx.telegram.getFileLink(imageId);
+    if (imageLink) {
+      ctx.reply('Dejame ver...');
+      let response = await identifyCharacterByImageUrl(imageLink.toString());
+      ctx.reply(
+        response || 'No he podido identificar nada 😣, mandame otra foto!'
+      );
+    }
+  }
+});
+
+bot.launch();
+console.log('QuienEraEseBot esta en marcha!');

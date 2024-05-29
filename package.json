@@ -1,20 +1,20 @@
 {
-  "name": "express-template-2024",
+  "name": "car-identifier-chatbot",
   "version": "1.0.0",
-  "description": "template for express project with typescript, prettier, eslint, and jest",
+  "description": "car-identifier-chatbot",
   "keywords": [
-    "express",
-    "template",
-    "TypeScript"
+    "whatsapp",
+    "TypeScript",
+    "AI"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MiguelZamoraRey/express-template-2024.git"
+    "url": "git+https://github.com/MiguelZamoraRey/TT_chatbot.git"
   },
   "bugs": {
-    "url": "https://github.com/MiguelZamoraRey/express-template-2024/issues"
+    "url": "https://github.com/MiguelZamoraRey/TT_chatbot/issues"
   },
-  "homepage": "https://github.com/MiguelZamoraRey/express-template-2024#readme",
+  "homepage": "https://github.com/MiguelZamoraRey/TT_chatbot#readme",
   "author": "Miguel Zamora Rey <miguelzamorarey@gmail.com>",
   "license": "MIT",
   "main": "src/index.js",
@@ -24,10 +24,9 @@
     "dev": "tsnd -r tsconfig-paths/register --respawn --ignore-watch node_modules src/index.ts"
   },
   "dependencies": {
-    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-    "express": "^4.18.2",
-    "openai": "^4.47.2"
+    "openai": "^4.47.2",
+    "telegraf": "^4.16.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.23.9",
@@ -35,8 +34,6 @@
     "@babel/node": "^7.23.9",
     "@babel/preset-env": "^7.23.9",
     "@babel/preset-typescript": "^7.23.3",
-    "@types/cors": "^2.8.17",
-    "@types/express": "^4.17.21",
     "@types/node": "^20.11.19",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "babel-plugin-module-resolver": "^5.0.0",
@@ -51,6 +48,7 @@
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "tsconfig-paths": "^4.2.0",
+    "typegram": "^5.2.0",
     "typescript": "^5.3.3"
   }
 }

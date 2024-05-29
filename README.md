@@ -1,6 +1,6 @@
 # ¿Qué es esto?
 
-Este proyecto es un template para crear rápidamente aplicaciones de backend con express + typescript, con las configuraciones de eslint y prettier ya realizadas, y las rutas absolutas con el @.
+Es un bot the telegram que incluye conexion con OpenAi y nos ayuda a identificar a personajes famosos
 
 ## Instalación
 
@@ -28,14 +28,8 @@ Y una vez creado puedes iniciar el build con
 
 <code>
 PORT=3000
+OPENAI_API_KEY="OPENAI_API_KEY"
+OPENAI_ORGANIZATION="OPENAI_ORGANIZATION"
+OPENAI_PROJECT_ID="OPENAI_PROJECT_ID"
+TELEGRAM_API_KEY="TELEGRAM_API_KEY"
 </code>
-
-2. Puedes ver los ejemplos en las rutas:
-
-> http://localhost:3000/
-
-> http://localhost:3000/example/hello
-
-## Roadmap
-
-- Añadir soporte para **Jest**
