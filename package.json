@@ -1,9 +1,9 @@
 {
-  "name": "car-identifier-chatbot",
+  "name": "character-identifier-chatbot",
   "version": "1.0.0",
-  "description": "car-identifier-chatbot",
+  "description": "Es un bot the telegram que incluye conexion con OpenAi y nos ayuda a identificar a personajes famosos",
   "keywords": [
-    "whatsapp",
+    "Telegram",
     "TypeScript",
     "AI"
   ],
