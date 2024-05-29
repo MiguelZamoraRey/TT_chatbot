@@ -33,3 +33,7 @@ OPENAI_ORGANIZATION="OPENAI_ORGANIZATION"
 OPENAI_PROJECT_ID="OPENAI_PROJECT_ID"
 TELEGRAM_API_KEY="TELEGRAM_API_KEY"
 </code>
+
+## Ejemplo
+
+Agregame en [t.me/QuienPersonajeBot](t.me/QuienPersonajeBot).
