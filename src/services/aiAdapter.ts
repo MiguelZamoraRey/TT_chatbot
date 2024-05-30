@@ -27,7 +27,10 @@ export async function callAI(callParams: AiCallParams) {
   }
 }
 
-export async function identifyCarByImageUrl(imgUrl: string) {
+export async function identifyCarByImageUrl(
+  imgUrl: string,
+  audioFormat: boolean
+) {
   try {
     const params: OpenAI.Chat.ChatCompletionCreateParams = {
       model: 'gpt-4o',
@@ -52,13 +55,24 @@ export async function identifyCarByImageUrl(imgUrl: string) {
     const completion: OpenAI.Chat.ChatCompletion =
       await openai.chat.completions.create(params);
 
-    return completion.choices[0].message.content;
+    if (audioFormat && completion.choices[0].message.content) {
+      const mp3 = await openai.audio.speech.create({
+        model: 'tts-1',
+        voice: 'alloy',
+        input: completion.choices[0].message.content
+      });
+      const buffer = Buffer.from(await mp3.arrayBuffer());
+      return buffer;
+    }
   } catch (err) {
     return (err as Error).message;
   }
 }
 
-export async function identifyCharacterByImageUrl(imgUrl: string) {
+export async function identifyCharacterByImageUrl(
+  imgUrl: string,
+  audioFormat: boolean
+) {
   try {
     const params: OpenAI.Chat.ChatCompletionCreateParams = {
       model: 'gpt-4o',
@@ -82,6 +96,16 @@ export async function identifyCharacterByImageUrl(imgUrl: string) {
     };
     const completion: OpenAI.Chat.ChatCompletion =
       await openai.chat.completions.create(params);
+
+    if (audioFormat && completion.choices[0].message.content) {
+      const mp3 = await openai.audio.speech.create({
+        model: 'tts-1',
+        voice: 'alloy',
+        input: completion.choices[0].message.content
+      });
+      const buffer = Buffer.from(await mp3.arrayBuffer());
+      return buffer;
+    }
 
     return completion.choices[0].message.content;
   } catch (err) {
